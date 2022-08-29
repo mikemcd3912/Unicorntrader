@@ -3,23 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class FindUnicorn extends StatefulWidget {
-  FindUnicorn({Key? key}) : super(key: key);
+class MyPosts extends StatefulWidget {
+  MyPosts({Key? key}) : super(key: key);
 
   @override
-  _FindUnicornState createState() => _FindUnicornState();
+  _MyPostsState createState() => _MyPostsState();
 }
 
-class _FindUnicornState extends State<FindUnicorn> {
-  List<Unicorn> page = [];
-  int lastPost = 0;
+class _MyPostsState extends State<MyPosts> {
+  int totalWaste = 0;
+  List<Unicorn> feed = [];
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Widget>(
-      builder: builder),
-
-    
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        builder: (context, snapshot) {
+          feed = [];
+          if (snapshot.hasData && snapshot.data!.docs.length > 0) {
+            totalWaste = 0;
+            snapshot.data!.docs.forEach((element) {
+              var postMap = element.data() as Map<String, dynamic>;
+              totalWaste = totalWaste + postMap['quantity'] as int;
+              feed.add(WasteEntry.fromMapTimeStamp(postMap));
+            });
+            feed.sort((a, b) => b.date.compareTo(a.date));
+          }
           return Scaffold(
             appBar: AppBar(
               title: Semantics(
