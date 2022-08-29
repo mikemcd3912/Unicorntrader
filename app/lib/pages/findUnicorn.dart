@@ -1,4 +1,5 @@
 import 'package:app/models/unicorn.dart';
+import 'package:app/widgets/unicornListing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,73 +17,48 @@ class _FindUnicornState extends State<FindUnicorn> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Widget>(
-      builder: builder),
-
-    
-          return Scaffold(
-            appBar: AppBar(
-              title: Semantics(
-                value: 'Waste-a-gram - $totalWaste',
-                label: 'App header',
-                child: Center(
-                  child: Text(
-                    'Waste-a-gram - $totalWaste',
-                    style: TextStyle(fontFamily: 'Cedar', fontSize: 25),
-                  ),
-                ),
-              ),
+    List<Unicorn> posts = [];
+    return Scaffold(
+      appBar: AppBar(
+        title: Semantics(
+          value: 'UnicornTrader',
+          label: 'App header',
+          child: const Center(
+            child: Text(
+              'UnicornTrader',
             ),
-            body: _content(context, feed),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: _bigFAB(context),
-          );
-        });
-  }
-
-  Widget _bigFAB(BuildContext context) {
-    final ImagePicker _picker = ImagePicker();
-    return Container(
-      height: MediaQuery.of(context).size.height * .1,
-      child: FittedBox(
-        child: FloatingActionButton(
-          onPressed: () async {
-            var newImageType = false;
-            if (await confirm(
-              context,
-              title: Text('Select Image Type'),
-              content: Text(
-                  'Would you like to select an image from Device storage or Take a new Photo?'),
-              textOK: Text('Select an image From Device'),
-              textCancel: Text('Take a new Photo with the Camera'),
-            )) {
-              newImageType = true;
-            }
-            var image = await _getPhoto(_picker, newImageType);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => NewPost(image: File(image!.path))));
-          },
-          tooltip: 'Add New Post',
-          child: Icon(Icons.add_a_photo),
+          ),
         ),
+      ),
+      body: FutureBuilder(
+        future: _getPosts(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> response) {
+          if (response.hasData) {
+            return _content(context, posts);
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
-}
 
-Widget _content(BuildContext context, List posts) {
-  if (posts.isEmpty) {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  } else {
-    return ListView.builder(
-        itemCount: posts.length,
-        itemBuilder: (context, index) {
-          return PostTile(post: posts[index]);
-        });
+  Future<List> _getPosts() async {
+    List<Unicorn> posts = [];
+    return posts;
+  }
+
+  Widget _content(BuildContext context, List posts) {
+    if (posts.isEmpty) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return ListView.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            return UnicornListing(post: posts[index]);
+          });
+    }
   }
 }

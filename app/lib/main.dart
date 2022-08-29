@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:app/pages/home.dart';
 import 'package:app/pages/addUnicorn.dart';
 import 'package:app/pages/findUnicorn.dart';
-import 'package:app/pages/myPosts.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/':(context) => const Home(),
-        '/add':(context) => const AddUnicorn(),
-        '/myPosts':(context)=> MyPosts(),
-        '/findUnicorn':(context) => FindUnicorn(),
+        '/': (context) => const Home(),
+        '/add': (context) => const AddUnicorn(),
+        '/myPosts': (context) => FindUnicorn(),
+        '/findUnicorn': (context) => FindUnicorn(),
       },
     );
   }
@@ -36,14 +34,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-       
     );
   }
 }
