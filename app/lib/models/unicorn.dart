@@ -1,12 +1,12 @@
 class Unicorn {
-  final DateTime datePosted;
+  final String postid ;
   int? price;
   String? imageURL;
   String? name;
   String? description;
 
   Unicorn({
-    required this.datePosted,
+    required this.postid,
     this.price,
     this.imageURL,
     this.description,
@@ -14,19 +14,9 @@ class Unicorn {
 
   });
 
-  factory Unicorn.fromMapTimeStamp(Map<String, dynamic> entry) {
-    return Unicorn(
-      datePosted: entry['date'].toDate(),
-      price: entry['price'],
-      imageURL: entry['imageURL'],
-      description: entry['description'],
-      name: entry['name']
-    );
-  }
-
   factory Unicorn.fromMap(Map<String, dynamic> entry) {
     return Unicorn(
-      datePosted: entry['date'],
+      postid: entry['imageURL'],
       price: entry['price'],
       imageURL: entry['imageURL'],
       description: entry['description'],
