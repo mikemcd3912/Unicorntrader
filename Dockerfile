@@ -22,8 +22,8 @@ RUN flutter config --enable-web
 
 # Copy files to container and build
 RUN mkdir /app/
-COPY . /app/
-WORKDIR /app/
+COPY . /Unicorntrader
+WORKDIR /Unicorntrader/app
 RUN pwd
 RUN flutter build web
 
