@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const Home(),
+        '/': (context) => FindUnicorn(),
         '/add': (context) => const AddUnicorn(),
         '/myPosts': (context) => FindUnicorn(),
         '/findUnicorn': (context) => FindUnicorn(),
