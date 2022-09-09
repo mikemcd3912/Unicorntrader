@@ -25,9 +25,7 @@ class _FindUnicornState extends State<FindUnicorn> {
   }
 
   List<Unicorn> parseJSON(http.Response response) {
-    print(response.body);
     Map<String, dynamic> rawJson = json.decode(response.body);
-    print(rawJson);
     Iterable<dynamic> items = rawJson['Items'];
     List<Unicorn> unicorns =
         List<Unicorn>.from(items.map((e) => Unicorn.fromMap(e)));
