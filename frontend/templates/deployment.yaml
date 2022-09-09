@@ -19,6 +19,7 @@ spec:
       labels:
         app: frontend
     spec:
+    serviceAccountName: s3-read-access
       containers:
       - image: 359322168451.dkr.ecr.us-west-2.amazonaws.com/capstone:frontend_v1.11
         imagePullPolicy: Always
