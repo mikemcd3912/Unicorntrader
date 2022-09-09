@@ -38,15 +38,15 @@ class _FindUnicornState extends State<FindUnicorn> {
   @override
   void initState() {
     super.initState();
-    widget.response = getUnicorns();
   }
 
   @override
   Widget build(BuildContext context) {
+    widget.response = getUnicorns();
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
-          value: 'UnicornTrader 1.8',
+          value: 'UnicornTrader',
           label: 'App header',
           child: const Center(
             child: Text(
@@ -71,6 +71,7 @@ class _FindUnicornState extends State<FindUnicorn> {
                     title: Text(post.name!),
                     subtitle: Text(post.description!),
                     trailing: Text('Price: \$${post.price!}'),
+                    visualDensity: VisualDensity(vertical: 4.0),
                   );
                 },
               );

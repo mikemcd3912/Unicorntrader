@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/pages/home.dart';
 import 'package:app/pages/addUnicorn.dart';
 import 'package:app/pages/findUnicorn.dart';
+import 'package:flutter_web_frame/flutter_web_frame.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => FindUnicorn(),
-        '/add': (context) => const AddUnicorn(),
-        '/myPosts': (context) => FindUnicorn(),
-        '/findUnicorn': (context) => FindUnicorn(),
-      },
-    );
+    return FlutterWebFrame(
+        maximumSize: const Size(800.0, 1600),
+        builder: (context) {
+          return MaterialApp(
+            routes: {
+              '/': (context) => FindUnicorn(),
+              '/add': (context) => const AddUnicorn(),
+              '/myPosts': (context) => FindUnicorn(),
+              '/findUnicorn': (context) => FindUnicorn(),
+            },
+          );
+        });
   }
 }
 
