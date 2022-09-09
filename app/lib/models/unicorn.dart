@@ -14,10 +14,10 @@ class Unicorn {
 
   factory Unicorn.fromMap(Map<String, dynamic> table) {
     return Unicorn(
-        postid: table['imageURL']['S'],
-        price: table['price']['S'],
-        imageURL: table['imageURL']['S'],
-        description: table['description']['S'],
-        name: table['name']['S']);
+        postid: table['imageURL'],
+        price: table['price'],
+        imageURL: table['imageURL'],
+        description: table['description'],
+        name: table['name']);
   }
 }

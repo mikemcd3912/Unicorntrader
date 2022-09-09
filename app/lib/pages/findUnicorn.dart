@@ -25,7 +25,9 @@ class _FindUnicornState extends State<FindUnicorn> {
   }
 
   List<Unicorn> parseJSON(http.Response response) {
+    print(response.body);
     Map<String, dynamic> rawJson = json.decode(response.body);
+    print(rawJson);
     Iterable<dynamic> items = rawJson['Items'];
     List<Unicorn> unicorns =
         List<Unicorn>.from(items.map((e) => Unicorn.fromMap(e)));
@@ -53,16 +55,18 @@ class _FindUnicornState extends State<FindUnicorn> {
               (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
             if (snapshot.hasData) {
               widget.unicorns = parseJSON(snapshot.data!);
-              return ListView.builder(
-                itemCount: widget.unicorns.length,
-                itemBuilder: (context, index) {
-                  var post = widget.unicorns.elementAt(index);
-                  return ListTile(
-                    leading: Image.network(post.imageURL!),
-                    title: Text(post.name!),
-                    subtitle: Text(post.description!),
-                  );
-                },
+              return Center(
+                child: ListView.builder(
+                  itemCount: widget.unicorns.length,
+                  itemBuilder: (context, index) {
+                    var post = widget.unicorns.elementAt(index);
+                    return ListTile(
+                      leading: Image.network(post.imageURL!),
+                      title: Text(post.name!),
+                      subtitle: Text(post.description!),
+                    );
+                  },
+                ),
               );
             } else if (snapshot.hasError) {
               return const Center(child: Icon(Icons.error_outline_sharp));
