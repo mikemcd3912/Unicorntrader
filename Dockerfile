@@ -24,7 +24,6 @@ RUN flutter config --enable-web
 RUN mkdir /app/
 COPY . /Unicorntrader
 WORKDIR /Unicorntrader/app
-RUN pwd
 RUN flutter build web --no-sound-null-safety
 
 # Stage 2 - Create the run-time image
