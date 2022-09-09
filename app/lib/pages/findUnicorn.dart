@@ -1,8 +1,5 @@
 import 'package:app/models/unicorn.dart';
-import 'package:app/widgets/unicornListing.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -53,15 +50,17 @@ class _FindUnicornState extends State<FindUnicorn> {
               (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
             if (snapshot.hasData) {
               widget.unicorns = parseJSON(snapshot.data!);
-              return Center(
+              return Container(
+                alignment: Alignment.center,
                 child: ListView.builder(
                   itemCount: widget.unicorns.length,
                   itemBuilder: (context, index) {
                     var post = widget.unicorns.elementAt(index);
                     return ListTile(
-                      leading: Image.network(post.imageURL!),
+                      // leading: Image.network(post.imageURL!),
                       title: Text(post.name!),
                       subtitle: Text(post.description!),
+                      trailing: Text('Price: \$${post.price!}'),
                     );
                   },
                 ),
