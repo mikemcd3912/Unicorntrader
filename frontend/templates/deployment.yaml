@@ -20,7 +20,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: 359322168451.dkr.ecr.us-west-2.amazonaws.com/capstone:frontend_v1.8
+      - image: 359322168451.dkr.ecr.us-west-2.amazonaws.com/capstone:frontend_v1.9
         imagePullPolicy: Always
         name: frontend
         ports:
