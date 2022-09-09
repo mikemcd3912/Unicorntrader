@@ -24,7 +24,7 @@ RUN flutter config --enable-web
 RUN mkdir /app/
 COPY . /Unicorntrader
 WORKDIR /Unicorntrader/app
-RUN flutter build web --no-sound-null-safety --web-renderer html
+RUN flutter build web --no-sound-null-safety 
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine

@@ -18,7 +18,13 @@ class _FindUnicornState extends State<FindUnicorn> {
       'http://adec3ffa7d6da4e89b2bc094419032d6-2125423067.us-west-2.elb.amazonaws.com/';
 
   Future<http.Response> getUnicorns() {
-    return http.get(Uri.parse(apiEndpoint));
+    return http.get(
+      Uri.parse(apiEndpoint),
+      headers: {
+        'content-type': 'application/json',
+        'Access-Control-Allow-Origin': 'true'
+      },
+    );
   }
 
   List<Unicorn> parseJSON(http.Response response) {
